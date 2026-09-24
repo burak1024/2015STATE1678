@@ -21,7 +21,8 @@ public class ElevatorSubsystem extends Subsystem {
     public static ElevatorSubsystem subsystem() {
         return getInstance();
     }
-    public ElevatorSubsystem(){
+
+    public ElevatorSubsystem() {
         ElevatorMotorL.getConfigurator().apply(ElevatorConfig.config());
         ElevatorMotorR.getConfigurator().apply(ElevatorConfig.config());
     }
@@ -33,7 +34,8 @@ public class ElevatorSubsystem extends Subsystem {
         L1(1),
         L2(2),
         L3(3),
-        L4(4);
+        L4(4),
+        L0(5);
 
         public int stateNum;
 
@@ -44,12 +46,12 @@ public class ElevatorSubsystem extends Subsystem {
 
     public Runnable[][] methods = {
             {
-                    () -> idleIMethods(),
-                    () -> LayerPMethods(0),
+                    () -> emptyMethod(),
+                    () -> emptyMethod(),
                     () -> emptyMethod()
             },
             {
-                    () -> LayerPMethods(1),
+                    () -> emptyMethod(),
                     () -> LayerPMethods(1),
                     () -> emptyMethod()
             },
@@ -68,6 +70,11 @@ public class ElevatorSubsystem extends Subsystem {
                     () -> LayerPMethods(4),
                     () -> emptyMethod()
             },
+            {
+                    () -> emptyMethod(),
+                    () -> LayerPMethods(0),
+                    () -> emptyMethod()
+            }
     };
 
     public void changeState(state newState) {
